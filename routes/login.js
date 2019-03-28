@@ -82,7 +82,7 @@ app.post('/google', async(req, res)=>{
             usuario.save((err, usuarioDB)=>{
                 var token = jwt.sign({ usuario:usuarioDB }, SEED, { expiresIn: 14400 }); // 4 horas
 
-                res.status(200).json({
+                return res.status(200).json({
                     ok : true,
                     usuario: usuarioDB,
                     token: token,
@@ -92,11 +92,7 @@ app.post('/google', async(req, res)=>{
         }
     });
 
-    // return res.status(200).json({
-    //     ok : true,
-    //     mensaje: 'Correcto',
-    //     googleUser: googleUser
-    // });
+    
 });
 
 

@@ -14,7 +14,7 @@ app.get('/', (req, res, next) => {
     var desde = req.query.desde || 0; // si existe param, es un num, si no, es un 0
     desde = Number(desde);
 
-    Usuario.find({  }, 'nombre email img role')
+    Usuario.find({  }, 'nombre email img role google')
         .skip(desde)
         .limit(5)//cuantos registros enseño
         .exec(
@@ -95,7 +95,7 @@ app.put("/:id", middleware.verificaToken, (req, res)=>{
 
 
 //Crear un nuevo usuario
-app.post('/',middleware.verificaToken, (req, res)=> {
+app.post('/', (req, res)=> {
 
     var body = req.body;
     var usuario = new Usuario({
