@@ -40,6 +40,35 @@ app.get('/', (req, res, next) => {
     
 });
 
+//Obtener medico
+app.get('/:id', (req, res)=>{
+    var id = req.params.id;
+
+    Medico.findById(id, (err, medico)=>{
+       
+        if(err) {
+            return res.status(500).json({
+                ok : false,
+                mensaje: 'Error buscando médico',
+                errors: err
+            });
+        }
+
+        if(!medico){
+            return res.status(400).json({
+                ok: false,
+                mensaje: 'El médico con el id '+id+" no existe",
+                errors: {message: 'No existe un médico con ese id'}
+            });
+        }
+       
+        res.status(200).json({
+            ok : true,
+            medico: medico
+        });
+        
+    });
+});
 
 //Verificar token
 
